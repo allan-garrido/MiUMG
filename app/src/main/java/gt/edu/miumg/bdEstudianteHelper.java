@@ -21,6 +21,6 @@ public class bdEstudianteHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int version1, int version2) {
         db.execSQL("drop table if exists profesor");
-        db.execSQL("create table estudiante(nombre text primary key, edad int)");
+        db.execSQL("create table estudiante(nombre text primary key, edad integer)");
     }
 }
