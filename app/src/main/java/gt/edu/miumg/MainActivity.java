@@ -10,7 +10,6 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     EditText et1, et2;
     Intent iMenu, iStudent;
-    public Profesor profesor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
         iMenu = new Intent(this, MenuActivity.class);
         iStudent = new Intent(this, StudentActivity.class);
-
-        profesor = new Profesor();
     }
 
     public void iniciarSesion(View view) {
