@@ -16,7 +16,7 @@
         android:textSize="36sp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nombre:"
@@ -50,5 +50,11 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="guardarteacher"
         android:text="Agregar sus datos" />
+
+    <ListView
+        android:id="@+id/lv1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
