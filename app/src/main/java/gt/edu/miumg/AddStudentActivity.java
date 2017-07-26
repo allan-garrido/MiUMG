@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -22,6 +23,7 @@ public class AddStudentActivity extends AppCompatActivity {
     EditText et1, et2;
     ListView lv1;
     Spinner sp1;
+    String spSelected;
 
     private bdProfesorHelper adminProfesores;
     private bdEstudianteHelper adminEstudiantes;
@@ -51,6 +53,14 @@ public class AddStudentActivity extends AppCompatActivity {
         adminEstudiantes = new bdEstudianteHelper(this, "MiUMG",null,1);
 
         showProfesores();
+
+        sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                spSelected = parent.getSelectedItem().toString();
+                Toast.makeText(AddStudentActivity.this, "Profesor " + spSelected, Toast.LENGTH_SHORT).show();
+            }
+            public void onNothingSelected(AdapterView<?> parent) {}}
+        );
     }
 
     public void addStudent(View view) {
@@ -101,6 +111,12 @@ public class AddStudentActivity extends AppCompatActivity {
 
             adapterProfesor.add(pTemp);
         }
+        bdProfesor.close();
         adapterProfesor.notifyDataSetChanged();
+    }
+
+
+    public void showEstudiantes() {
+        Toast.makeText(this, "Profesor: " + spSelected, Toast.LENGTH_SHORT).show();
     }
 }
