@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
                 startActivity(iMenu);
             } else {
-                Toast.makeText(this, "Acceso gt.edu.miumg.Estudiante", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Acceso Estudiante", Toast.LENGTH_SHORT).show();
                 startActivity(iStudent);
             }
         }

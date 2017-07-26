@@ -6,9 +6,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,6 +21,14 @@ import java.util.Map;
 public class AddStudentActivity extends AppCompatActivity {
     EditText et1, et2;
     ListView lv1;
+    Spinner sp1;
+
+    private bdProfesorHelper adminProfesores;
+    private bdEstudianteHelper adminEstudiantes;
+    private List<Profesor> profesores;
+    private List<Estudiante> estudiantes;
+    private ArrayAdapter<Profesor> adapterProfesor;
+    private ArrayAdapter<Estudiante> adapterEstudiante;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +37,20 @@ public class AddStudentActivity extends AppCompatActivity {
 
         et1 = (EditText) findViewById(R.id.et1);
         et2 = (EditText) findViewById(R.id.et2);
-
         lv1 = (ListView) findViewById(R.id.lv1);
+        sp1 = (Spinner) findViewById(R.id.sp1);
+
+        profesores = new ArrayList<>();
+        adapterProfesor = new ArrayAdapter<Profesor>(this, android.R.layout.simple_list_item_1,profesores);
+        adminProfesores = new bdProfesorHelper(this, "MiUMG",null,1);
+        adapterProfesor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp1.setAdapter(adapterProfesor);
+
+        estudiantes = new ArrayList<>();
+        adapterEstudiante = new ArrayAdapter<Estudiante>(this,android.R.layout.simple_list_item_1,estudiantes);
+        adminEstudiantes = new bdEstudianteHelper(this, "MiUMG",null,1);
+
+        showProfesores();
     }
 
     public void addStudent(View view) {
@@ -62,5 +84,23 @@ public class AddStudentActivity extends AppCompatActivity {
         }
 
         bdEstudiante.close();
+    }
+
+    public void showProfesores(){
+        SQLiteDatabase bdProfesor = adminProfesores.getReadableDatabase();
+
+        adapterProfesor.clear();
+
+        Cursor c = bdProfesor.rawQuery("select * from profesor;", null);
+
+        while(c.moveToNext()){
+            Profesor pTemp = new Profesor();
+
+            pTemp.setNombre(c.getString(c.getColumnIndex("nombre")));
+            pTemp.setEspecialidad(c.getString(c.getColumnIndex("especialidad")));
+
+            adapterProfesor.add(pTemp);
+        }
+        adapterProfesor.notifyDataSetChanged();
     }
 }
