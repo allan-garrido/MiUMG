@@ -20,32 +20,31 @@ public class ReporteActivity extends AppCompatActivity {
     Intent iMenu;
     private Button btmenu;
     ListView lv1;
-    private bdProfesorHelper adminProfesores;
-    private bdEstudianteHelper adminEstudiantes;
+   /* private bdEstudianteHelper adminEstudiantes;
     private List<Estudiante> estudiantes;
-    private ArrayAdapter<Estudiante> adapterEstudiante;
+    private ArrayAdapter<Estudiante> adapterEstudiante;*/
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reporte);
+
         lv1 = (ListView) findViewById(R.id.lv1);
 
-
-        estudiantes = new ArrayList<>();
+        /*estudiantes = new ArrayList<>();
         adapterEstudiante = new ArrayAdapter<Estudiante>(this,android.R.layout.simple_list_item_1,estudiantes);
-        adminEstudiantes = new bdEstudianteHelper(this, "MiUMG",null,1);
+        adminEstudiantes = new bdEstudianteHelper(this, "MiUMG",null,1);*/
 
         iMenu = new Intent(this, MenuActivity.class);
-        showEstudiante();
+       // showEstudiante();
     }
 
     public void irmenu(View view) {
         startActivity(iMenu);
     }
 
-    public void showEstudiante () {
+/*    public void showEstudiante () {
         bdEstudianteHelper bdEstudianteHelper = new bdEstudianteHelper(this, "estudiante", null, 1);
         SQLiteDatabase bdEstudiante = bdEstudianteHelper.getReadableDatabase();
         List<Map<String,String>> valores = new ArrayList<>();
@@ -68,6 +67,6 @@ public class ReporteActivity extends AppCompatActivity {
         bdEstudiante.close();
         sa.notifyDataSetChanged();
 
-    }
+    }*/
 
 }
