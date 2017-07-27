@@ -29,8 +29,9 @@ public class AddStudentActivity extends AppCompatActivity {
     private bdEstudianteHelper adminEstudiantes;
     private List<Profesor> profesores;
     private List<Estudiante> estudiantes;
-    private ArrayAdapter<Profesor> adapterProfesor;
+    private ArrayAdapter<String> adapterProfesor;
     private ArrayAdapter<Estudiante> adapterEstudiante;
+    private List<String> nombre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +42,10 @@ public class AddStudentActivity extends AppCompatActivity {
         et2 = (EditText) findViewById(R.id.et2);
         lv1 = (ListView) findViewById(R.id.lv1);
         sp1 = (Spinner) findViewById(R.id.sp1);
+        nombre = new ArrayList<>();
 
         profesores = new ArrayList<>();
-        adapterProfesor = new ArrayAdapter<Profesor>(this, android.R.layout.simple_list_item_1,profesores);
+        adapterProfesor = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,nombre);
         adminProfesores = new bdProfesorHelper(this, "MiUMG",null,1);
         adapterProfesor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp1.setAdapter(adapterProfesor);
@@ -104,12 +106,7 @@ public class AddStudentActivity extends AppCompatActivity {
         Cursor c = bdProfesor.rawQuery("select * from profesor;", null);
 
         while(c.moveToNext()){
-            Profesor pTemp = new Profesor();
-
-            pTemp.setNombre(c.getString(c.getColumnIndex("nombre")));
-            pTemp.setEspecialidad(c.getString(c.getColumnIndex("especialidad")));
-
-            adapterProfesor.add(pTemp);
+            adapterProfesor.add(c.getString(c.getColumnIndex("nombre")));
         }
         bdProfesor.close();
         adapterProfesor.notifyDataSetChanged();
