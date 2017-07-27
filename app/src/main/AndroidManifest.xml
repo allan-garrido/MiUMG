@@ -20,7 +20,8 @@
         <activity android:name=".TeacherActivity" />
         <activity android:name=".AddStudentActivity" />
         <activity android:name=".NotasActivity" />
-        <activity android:name=".StudentActivity"></activity>
+        <activity android:name=".StudentActivity" />
+        <activity android:name=".ReporteActivity"></activity>
     </application>
 
 </manifest>
