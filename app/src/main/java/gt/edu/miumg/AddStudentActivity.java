@@ -67,13 +67,15 @@ public class AddStudentActivity extends AppCompatActivity {
 
     public void addStudent(View view) {
         bdEstudianteHelper bdEstudianteHelper = new bdEstudianteHelper(this, "estudiante", null, 1);
-        SQLiteDatabase bdEstudiante = bdEstudianteHelper.getReadableDatabase();
+        SQLiteDatabase bdEstudiante = bdEstudianteHelper.getWritableDatabase();
+
         ContentValues tupla = new ContentValues();
         tupla.put("nombre", et1.getText().toString().trim());
         tupla.put("edad", Integer.parseInt(et2.getText().toString().trim()));
-        List<Map<String,String>> valores = new ArrayList<>();
-
+        tupla.put("profesor", spSelected.toString().trim());
         bdEstudiante.insert("estudiante", null, tupla);
+
+        List<Map<String,String>> valores = new ArrayList<>();
 
         et1.setText("");
         et2.setText("");
@@ -81,6 +83,8 @@ public class AddStudentActivity extends AppCompatActivity {
         Toast.makeText(this, "Estudiante agregado", Toast.LENGTH_SHORT).show();
 
         Cursor bdCursor = bdEstudiante.rawQuery("select * from estudiante;", null);
+        SimpleAdapter sa;
+        sa = new SimpleAdapter(this, valores, android.R.layout.simple_list_item_2, new String[] {"First Line","Second Line"}, new int[] {android.R.id.text1, android.R.id.text2});
 
         if (bdCursor.moveToFirst()) {
             do {
@@ -90,12 +94,12 @@ public class AddStudentActivity extends AppCompatActivity {
                 lineas.put("Second Line",bdCursor.getString(bdCursor.getColumnIndex("edad")));
                 valores.add(lineas);
             } while (bdCursor.moveToNext());
-            SimpleAdapter sa = new SimpleAdapter(this, valores, android.R.layout.simple_list_item_2, new String[] {"First Line","Second Line"}, new int[] {android.R.id.text1, android.R.id.text2});
+
 
             lv1.setAdapter(sa);
         }
-
         bdEstudiante.close();
+        sa.notifyDataSetChanged();
     }
 
     public void showProfesores(){

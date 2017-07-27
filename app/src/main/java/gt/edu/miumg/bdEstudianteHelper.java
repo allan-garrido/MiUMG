@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by allan on 24/07/2017.
+ * Created by ALLAN GARRIDO on 24/07/2017.
  */
 
 public class bdEstudianteHelper extends SQLiteOpenHelper {
@@ -15,12 +15,12 @@ public class bdEstudianteHelper extends SQLiteOpenHelper {
 
     @Override
     public  void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table estudiante(nombre text primary key, edad int)");
+        db.execSQL("create table estudiante(nombre text primary key, edad integer, profesor text)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int version1, int version2) {
         db.execSQL("drop table if exists profesor");
-        db.execSQL("create table estudiante(nombre text primary key, edad integer)");
+        db.execSQL("create table estudiante(nombre text primary key, edad integer, profesor text)");
     }
 }
