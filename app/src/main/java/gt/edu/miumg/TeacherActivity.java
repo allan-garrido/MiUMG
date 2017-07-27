@@ -60,6 +60,27 @@ public class TeacherActivity extends AppCompatActivity {
         showAll();
     }
 
+    public void eliminarteacher(View view){
+        SQLiteDatabase bdProfesor = adminProfesores.getWritableDatabase();
+
+        String nombre;
+        nombre = et1.getText().toString();
+
+        Toast.makeText(this, nombre, Toast.LENGTH_SHORT).show();
+
+        int elimina = bdProfesor.delete("profesor","nombre = '"+nombre+"'",null);
+
+        if (elimina==1)
+            Toast.makeText(this, "Profesor eliminado", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(this, "No existe el profesor " + nombre, Toast.LENGTH_SHORT).show();
+
+        bdProfesor.close();
+
+        showAll();
+
+    }
+
     public void showAll() {
         SQLiteDatabase bdProfesor = adminProfesores.getReadableDatabase();
 
