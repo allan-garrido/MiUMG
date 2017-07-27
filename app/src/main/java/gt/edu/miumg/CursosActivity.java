@@ -38,14 +38,30 @@ public class CursosActivity extends AppCompatActivity {
         btn_del_curso = (Button) findViewById(R.id.btn1DelCurso);
 
         cursos = new ArrayList<>();
-        adapterCursos = new ArrayAdapter<Curso>(this,android.R.layout.simple_list_item_1,cursos);
+        adapterCursos = new ArrayAdapter<Curso>(this, android.R.layout.simple_list_item_1, cursos);
         list_cursos.setAdapter(adapterCursos);
-        adminCursos = new AdminSQLiteOpenHelperCurso(this,"administración",null,1);
+        adminCursos = new AdminSQLiteOpenHelperCurso(this,"administracion",null,1);
         showAllCursos();
     }
 
+    public void addCurso (View view) {
+        SQLiteDatabase db = adminCursos.getWritableDatabase();
+        String nombCurso = nom_curso.getText().toString();
+
+        ContentValues tupla = new ContentValues();
+        tupla.put("nombreCurso",nombCurso);
+
+        db.insert("curso",null,tupla);
+        db.close();
+
+        Toast.makeText(this,"Curso creado", Toast.LENGTH_SHORT).show();
+        showAllCursos();
+
+        nom_curso.setText("");
+    }
+
     public void showAllCursos(){
-        String queryCursos = "select * from cursos";
+        String queryCursos = "select * from curso";
         SQLiteDatabase db = adminCursos.getReadableDatabase();
         cursos.clear();
 
@@ -60,17 +76,28 @@ public class CursosActivity extends AppCompatActivity {
         adapterCursos.notifyDataSetChanged();
     }
 
-    public void addCurso (View view) {
+    public void elimCurso (View view) {
         SQLiteDatabase db = adminCursos.getWritableDatabase();
-        String nombCurso = nom_curso.getText().toString();
 
-        ContentValues tupla = new ContentValues();
-        tupla.put("nombreCurso",nombCurso);
+        String nomCursoElim;
+        nomCursoElim = nom_curso.getText().toString();
 
-        db.insert("curso",null,tupla);
+        db.execSQL("delete from curso where nombreCurso= '"+nomCursoElim+"'");
+
+        adapterCursos.notifyDataSetChanged();
+
+        //db.delete("curso","nombreCurso="+nomCursoElim, null);
+        Toast.makeText(this, "Asignatura eliminada", Toast.LENGTH_SHORT).show();
+
+        //int cant = db.delete("curso","nombreCurso="+nomCursoElim, null);
+
+        //if (cant==1)
+          //  Toast.makeText(this, "Asignatura eliminada", Toast.LENGTH_SHORT).show();
+        //else
+          //  Toast.makeText(this, "No existe la asignatura " + nomCursoElim, Toast.LENGTH_SHORT).show();
+
         db.close();
 
-        Toast.makeText(this,"Curso creado", Toast.LENGTH_SHORT).show();
         showAllCursos();
 
         nom_curso.setText("");

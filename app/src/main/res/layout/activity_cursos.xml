@@ -38,14 +38,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Crear curso" />
+            android:text="Crear curso"
+            android:onClick="addCurso"
+            />
 
         <Button
             android:id="@+id/btn1DelCurso"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Eliminar" />
+            android:text="Eliminar"
+            android:onClick="elimCurso"
+            />
     </LinearLayout>
 
     <ListView

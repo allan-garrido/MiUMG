@@ -5,13 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="gt.edu.miumg.MenuActivity">
+    tools:context="gt.edu.miumg.MenuActivity"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
+    >
 
     <Button
         android:id="@+id/bt2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0.69"
         android:text="Agregar los datos del profesor"
         android:textSize="20dp"
         android:onClick="datosprofe"/>
@@ -20,7 +23,7 @@
         android:id="@+id/bt3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0.68"
         android:text="Agregar Estudiantes"
         android:textSize="20dp"
         android:onClick="datosestudiante"/>
@@ -29,15 +32,18 @@
         android:id="@+id/bt4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0.64"
         android:text="Ingresar Notas"
         android:textSize="20dp"
         android:onClick="ingresarnotas"/>
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/btnIrCursos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Button" />
+        android:layout_weight="0.61"
+        android:text="Crear cursos"
+        android:textSize="20dp"
+        android:onClick="irCursos"
+        />
 </LinearLayout>
