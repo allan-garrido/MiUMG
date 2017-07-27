@@ -96,7 +96,10 @@ public class AddStudentActivity extends AppCompatActivity {
         }
 
         bdEstudiante.close();
+
     }
+
+
 
     public void showProfesores(){
         SQLiteDatabase bdProfesor = adminProfesores.getReadableDatabase();
