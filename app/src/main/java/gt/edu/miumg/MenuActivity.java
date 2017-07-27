@@ -1,12 +1,12 @@
 package gt.edu.miumg;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class MenuActivity extends AppCompatActivity {
-    Intent iTeacher, iAddStudent, iAddNotas, iAbout;
+    private Intent iTeacher, iAddStudent, iAddNotas, iAbout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,7 +15,7 @@ public class MenuActivity extends AppCompatActivity {
 
         iTeacher = new Intent(this, TeacherActivity.class);
         iAddStudent = new Intent(this, AddStudentActivity.class);
-        iAddNotas = new Intent(this,NotasActivity.class);
+        iAddNotas = new Intent(this, NotasActivity.class);
         iAbout = new Intent(this, AboutActivity.class);
     }
 
