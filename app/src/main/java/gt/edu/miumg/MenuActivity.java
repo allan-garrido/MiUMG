@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class MenuActivity extends AppCompatActivity {
-    private Intent iTeacher, iAddStudent, iAddNotas, iAbout;
+    private Intent iTeacher, iAddStudent, iAddNotas, iAbout, iReporte;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +17,7 @@ public class MenuActivity extends AppCompatActivity {
         iAddStudent = new Intent(this, AddStudentActivity.class);
         iAddNotas = new Intent(this, NotasActivity.class);
         iAbout = new Intent(this, AboutActivity.class);
+        iReporte = new Intent(this, ReporteActivity.class);
     }
 
     public void datosprofe(View view) {
@@ -29,6 +30,10 @@ public class MenuActivity extends AppCompatActivity {
 
     public void ingresarnotas(View view) {
         startActivity(iAddNotas);
+    }
+
+    public void reporte(View view) {
+        startActivity(iReporte);
     }
 
     public void about(View view) {

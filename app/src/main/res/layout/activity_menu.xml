@@ -34,6 +34,15 @@
         android:onClick="ingresarnotas"/>
 
     <Button
+        android:id="@+id/bt5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Reporte"
+        android:textSize="20dp"
+        android:onClick="reporte"/>
+
+    <Button
         android:id="@+id/button6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
